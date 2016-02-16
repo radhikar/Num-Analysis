@@ -1,0 +1,18 @@
+%computation of solution of a differential equation at a point using
+%Runge-Kutta Method
+
+a = 3;      %we want to know the value of y when the value of x is this.
+x = 0;       %initial condition for x   
+h = 1.5;      %step size
+y=5;          %initial condition for y
+n = (a-x)/h;   %calculating the number of runs to be made
+
+%Runge Kutta Method Starts
+for j = 0:1:n-1;
+    f = (3*exp(-x))-(0.4*y);
+    g = (3*exp(-x-h))-(0.4*y) - (0.4*h*f);
+    y = y +(h/2)*(f+g);
+    x = x+h;
+end
+
+y  %output the value of y which is the solution of the given DE at given x.
