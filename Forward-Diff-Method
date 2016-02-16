@@ -1,0 +1,32 @@
+%Forward difference method
+
+x = [0:0.01:1];   %Range of interest
+h = 0.01;         %difference in datapoints
+z = size (x)        
+m = length(x)-1   %checking the size of the array of x to costruct a matrix later
+A = (diag(ones(m-1,1),2)) + (diag((-1)*ones(m,1),1));  %construction of the matrix that represents the derivate for forward difference method
+                                                       %constructs matrix
+                                                       %of size (m+1)x(m-1)
+                                                       
+p = size(A)
+A=A(1:m-1,:);           %constructs a matrix of size (m-1)x(m+1)
+A = (1/h)*A;            %multiplies with the constant 1/h
+
+k = size(A)
+
+f = sin(pi*x);
+%f = x.^2;           %This is the given function
+f = f(:);
+g = size(f)
+D = A*f;            %given function is multiplied with the derivative matrix to get the approximate derivative
+D = D(:);           % making sure the array is columnar
+u = size(D)
+y = [0.01:0.01:1-0.01];   %since we will mot use the endpoint for the derivative, we will have to get rid of the first and last number in the range of interest
+
+y = y(:);        %make the array columnar
+figure(1)
+plot(y,D,y,pi*cos(pi*y))  %plots the real and approcimation graphs
+
+e = (pi*cos(pi*y))-D;     %2*y is derivative of given function x^2. It is subtracted by our derivative matrix
+figure(2)
+plot(y,e)       % plot the graph of error   
