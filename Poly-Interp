@@ -1,0 +1,21 @@
+%Ploynomial Interplotation
+
+function p = PolyInterp(x,y,t)
+n = length(x)-1;
+for k=1:n+1;
+    
+    L(k) =1;
+    for j=1:n+1;
+        if j==k;
+            L(k) = L(k)*1;
+        else 
+            L(k) = L(k)* ((t-x(j))/(x(k)-x(j)));
+        end 
+    end 
+end
+L = L(:);
+p =y*L;
+
+end
+
+
